@@ -2,10 +2,13 @@ import boto3
 from pprint import pprint
 
 # This demonstrates is about some ec2 operation example by using boto3
+# All examples are using resources, a high-level abstraction compared to clients
+# Document:  https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/ec2.html#instance
+
 manageConsole = boto3.session.Session(profile_name="root")
 ec2 = manageConsole.resource(service_name="ec2", region_name="ap-east-1")
 
-
+# How to create instance
 def create_instances():
     ec2.create_instances(
         ImageId="ami-0c1d5a98de68acf64",
@@ -15,7 +18,7 @@ def create_instances():
         KeyName="Daniel_AWS_Key_apeast1"
     )
 
-
+# How to get the info of image, instance and volume
 def get_image_and_instance_id():
     response = ec2.instances.all()
 
@@ -31,7 +34,7 @@ def get_volume_info():
         print(f"The Availability Zone is {item_volumes.availability_zone}")
         print(f"The Volume type is {item_volumes.volume_type}")
 
-
+# How to operate the instances
 def stop_instance():
     instance_id = input("Enter your instance id: ")
     instance = ec2.Instance(instance_id)
