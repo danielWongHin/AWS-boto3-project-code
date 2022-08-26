@@ -18,6 +18,7 @@ sts = manageConsole.client(service_name="sts", region_name="ap-east-1")
 
 
 # How to check the account ID
+
 def sts_get_account_id():
     response = sts.get_caller_identity()
     pprint(response["Account"])
@@ -38,6 +39,7 @@ def list_s3_bucket():
 
 
 # How to create instance
+
 def create_instances():
     ec2.create_instances(
         ImageId="ami-0c1d5a98de68acf64",
@@ -49,6 +51,7 @@ def create_instances():
 
 
 # How to get the info of image, instance and volume
+
 def get_image_and_instance_id():
     response = ec2.instances.all()
 
